@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    container_name: doma-mysql
+    volumes:
+      - ./db_data:/var/lib/mysql
+        #- ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: doma
+      MYSQL_USER: doma
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
+  doma:
+    image: doma:latest
+    container_name: doma-core
+    #volumes:
+        #- ./doma_data:/var/www/html
+    depends_on:
+      - db
+    expose:
+      - "80"
+    environment:
+      DB_HOST: doma-mysql:3306
+      DB_USERNAME: doma
+      DB_PASSWORD: ${MYSQL_PASSWORD}
+      DB_DATABASE_NAME: doma
+      ADMIN_USERNAME: ${ADMIN_USERNAME}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      TIME_ZONE: America/Chicago
+

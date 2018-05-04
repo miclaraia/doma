@@ -1,0 +1,13 @@
+#!/bin/bash
+set -euo pipefail
+
+if [ ! -f /var/www/html/index.php ]; then
+    cp -r /usr/local/share/doma/. /var/www/html/
+    chown -R www-data:www-data /var/www/html
+fi
+if [ ! -f /var/www/html/config.php ]; then
+    cp /var/www/html/config_original.php /var/www/html/config.php
+    chown -R www-data:www-data /var/www/html/config.php
+fi
+
+apache2-foreground

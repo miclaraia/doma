@@ -10,13 +10,16 @@
   //   SYSTEM SETTINGS
   // *********************************************************************************************************
 
+function define_env($name, $default_value) {
+  define($name, getenv($name) ?: $default_value);
+}
   // User names and passwords.
   // Database login information, ask your database server administrator/web hotel provider if you don't know.
-  define('DB_HOST', 'localhost');
-  define('DB_USERNAME', 'yourDatabaseUsername');
-  define('DB_PASSWORD', 'yourDatabasePassword');
+  define_env('DB_HOST', 'localhost');
+  define_env('DB_USERNAME', 'yourDatabaseUsername');
+  define_env('DB_PASSWORD', 'yourDatabasePassword');
   // The name of the database where the map information is stored. The database must exist prior to creation of the site.
-  define('DB_DATABASE_NAME', 'yourDatabaseName');
+  define_env('DB_DATABASE_NAME', 'yourDatabaseName');
   // The names of the database tables where user and map information is stored. Do not change unless you have a reason.
   // The database tables must _not_ exist before creation of the site.
   define('DB_MAP_TABLE', 'doma_maps');
@@ -26,12 +29,12 @@
   define('DB_CATEGORY_TABLE', 'doma_categories');
 
   // The user name and password for administration (e g adding and editing users).
-  define('ADMIN_USERNAME', 'yourAdminUsername');
-  define('ADMIN_PASSWORD', 'yourAdminPassword');
+  define_env('ADMIN_USERNAME', 'yourAdminUsername');
+  define_env('ADMIN_PASSWORD', 'yourAdminPassword');
 
   // Path to the map image directory, relative to this file. Don't change unless you have a good reason.
   // The directory is created during creation. Write access to the directory for the server user account under which PHP runs is required.
-  define('MAP_IMAGE_PATH', 'map_images');
+  define_env('MAP_IMAGE_PATH', 'map_images');
 
   // The default language code of the site according to ISO 639-1 language codes: http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes 
   // Language files are in xml format, named [language code].xml (e.g. en.xml) and located in the 'languages' directory.
@@ -54,7 +57,7 @@
   //   sv  (Swedish, credits to Mats Troeng)
   //   tr  (Turkish, credits to Guven Solmaz and Berkay Kılıcoglu)
   //   ua  (Ukrainian, credits to Melnyk Taras)
-  define('LANGUAGE_CODE', 'en');
+  define_env('LANGUAGE_CODE', 'en');
 
   // The MySQL text sorting order, known as 'collation'.
   // Use utf8_general_ci for English, utf8_swedish_ci for Swedish, and utf8_danish_ci for Norwegian BokmÃ¥l.
@@ -66,7 +69,7 @@
   // Used as reply address when sending confirmation emails to new users.
   // Please make sure that your server is properly configured for sending emails, more info can be found at http://www.php.net/mail.
   // The email address must be changed from email@yourdomain.com to a valid address, or the sending won't work.
-  define('ADMIN_EMAIL', 'email@yourdomain.com');
+  define_env('ADMIN_EMAIL', 'email@yourdomain.com');
 
   // Specifies the code that a person has to enter when creating a new user accounts by himself without any administrator involved.
   // Leave the code empty ('') to prevent people to create user accounts theirselves.
@@ -75,22 +78,22 @@
   //Specifies the root url that the Doma server is running behind if doma is behind a revers proxy.
   //Example Doma frontend running on mydomain.com/ol/ specify the root_url to '/ol'
   //this ensures that correct paths are given back to the users browser
-  define('ROOT_URL', '');
+  define_env('ROOT_URL', '');
 
   // *********************************************************************************************************
   //   APPEARANCE SETTINGS
   // *********************************************************************************************************
 
   // The name of the site as displayed in the browser's window title when browsing the user list page.
-  define('_SITE_TITLE', 'The Digital Orienteering Map Archive');
+  define_env('_SITE_TITLE', 'The Digital Orienteering Map Archive');
 
   // The name of the site as displayed in the browser's window title when browsing the user list page.
-  define('_SITE_DESCRIPTION', 'Welcome to the digital orienteering map archive!');
+  define_env('_SITE_DESCRIPTION', 'Welcome to the digital orienteering map archive!');
 
   // Size and scaling of thumbnail images. Don't change unless you have a good reason.
-  define('THUMBNAIL_WIDTH', 400);
-  define('THUMBNAIL_HEIGHT', 100);
-  define('THUMBNAIL_SCALE', 0.5);
+  define_env('THUMBNAIL_WIDTH', 400);
+  define_env('THUMBNAIL_HEIGHT', 100);
+  define_env('THUMBNAIL_SCALE', 0.5);
 
   // *********************************************************************************************************
   //   SETTINGS ADDED IN DOMA 3.0
@@ -125,7 +128,7 @@
   
   // If you want a different time zone than the server's time zone, specify it here. An empty string means that the server's default time zone is used.
   // see http://www.php.net/manual/en/timezones.php for available time zones.
-  define('TIME_ZONE', '');
+  define_env('TIME_ZONE', 'America/New_York');
   
   // Define usage of 3DRERUN (1 = yes, 0 = no)
   define('USE_3DRERUN','0');
