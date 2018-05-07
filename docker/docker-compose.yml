@@ -32,3 +32,8 @@ services:
       ADMIN_PASSWORD: ${ADMIN_PASSWORD}
       TIME_ZONE: America/Chicago
 
+networks:
+    default:
+        external:
+            name: droplet
+
