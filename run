@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -euo pipefail
+
+build () {
+    docker build . -t doma:latest
+}
+
+restart_container() {
+    docker-compose down
+    docker-compose up -d
+}
+
+run_command=$1
+shift
+case $run_command in
+    "build")
+        build
+        ;;
+    "restart")
+        restart_container
+        ;;
+esac
